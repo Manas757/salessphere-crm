@@ -1,0 +1,8 @@
+# Ignore backend dependencies
+server/node_modules/
+
+# Ignore backend secrets (CRITICAL)
+server/.env
+
+# Ignore system files
+.DS_Store
