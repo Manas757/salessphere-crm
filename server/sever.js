@@ -59,5 +59,28 @@ io.on('connection', (socket) => {
   socket.on('disconnect', () => console.log('User disconnected:', socket.id));
 });
 
+// ==========================================
+// 🚨 TEMPORARY SEED ROUTE (DELETE LATER) 🚨
+// ==========================================
+const Client = require('./models/Client'); // Ensure this path matches your models folder!
+
+app.get('/api/force-seed', async (req, res) => {
+  try {
+    const mockClients = [
+      { firstName: "Sarah", lastName: "Connor", company: "Cyberdyne Systems", email: "s.connor@cyberdyne.com", phone: "555-0101", pipelineStage: "Lead", sentimentStatus: "Hesitant", dealValue: 45000 },
+      { firstName: "Bruce", lastName: "Wayne", company: "Wayne Enterprises", email: "bwayne@wayne.com", phone: "555-0102", pipelineStage: "Closed/Won", sentimentStatus: "Ready", dealValue: 95000 },
+      { firstName: "Tony", lastName: "Stark", company: "Stark Industries", email: "tony@stark.com", phone: "555-0103", pipelineStage: "In Negotiations", sentimentStatus: "Interested", dealValue: 82000 },
+      { firstName: "Diana", lastName: "Prince", company: "Themyscira LLC", email: "diana@themyscira.com", phone: "555-0104", pipelineStage: "Contacted", sentimentStatus: "Interested", dealValue: 54000 },
+      { firstName: "Clark", lastName: "Kent", company: "Daily Planet", email: "ckent@dailyplanet.com", phone: "555-0105", pipelineStage: "Lead", sentimentStatus: "At Risk", dealValue: 12000 }
+    ];
+
+    await Client.bulkCreate(mockClients);
+    res.status(200).send("<h1>✅ TROJAN HORSE SUCCESSFUL: Database Seeded!</h1><p>Go check your Vercel Dashboard!</p>");
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("<h1>❌ FAILED</h1><p>" + error.message + "</p>");
+  }
+});
+
 const PORT = process.env.PORT || 5000;
 server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
