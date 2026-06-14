@@ -12,7 +12,7 @@ export default function Pipeline() {
 
   const fetchClients = async () => {
     try {
-      const { data } = await axios.get('http://localhost:5000/api/clients');
+      const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/clients`);
       setClients(data);
     } catch (error) {
       console.error("[Pipeline] Error fetching clients:", error);
@@ -40,7 +40,7 @@ export default function Pipeline() {
     );
 
     try {
-      await axios.put(`http://localhost:5000/api/clients/${clientId}/stage`, {
+      await axios.put(`${import.meta.env.VITE_API_URL}/api/clients/${clientId}/stage`, {
         pipelineStage: newStage
       });
     } catch (error) {

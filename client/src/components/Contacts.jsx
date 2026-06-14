@@ -17,10 +17,10 @@ export default function Contacts() {
   const [searchQuery, setSearchQuery] = useState('');
   const [filterStage, setFilterStage] = useState('All');
 
-  const fetchClients = async () => {
+ const fetchClients = async () => {
     try {
       setIsLoading(true);
-      const { data } = await axios.get('http://localhost:5000/api/clients');
+      const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/clients`);
       setClients(data);
       setError(null);
     } catch (err) {

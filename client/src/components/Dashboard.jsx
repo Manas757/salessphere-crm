@@ -20,9 +20,9 @@ export default function Dashboard() {
   // --- Modal State ---
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const fetchStats = async () => {
+ const fetchStats = async () => {
     try {
-      const { data } = await axios.get('http://localhost:5000/api/analytics');
+      const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/analytics`);
       
       const closed = data.pipelineData?.find(d => d.stage === 'Closed/Won')?.count || 0;
       

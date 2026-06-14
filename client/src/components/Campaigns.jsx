@@ -16,8 +16,7 @@ export default function Campaigns() {
     setResult(null);
 
     try {
-      // TODO: Swap localhost for import.meta.env.VITE_API_BASE_URL before cloud deployment
-      const response = await axios.post('http://localhost:5000/api/campaigns/generate', {
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/campaigns/generate`, {
         pipelineStage: stage,
         sentimentStatus: sentiment
       });

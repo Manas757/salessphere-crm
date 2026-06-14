@@ -16,7 +16,7 @@ export default function AiDraftModal({ isOpen, onClose, client }) {
     setDraft(''); 
 
     try {
-      const response = await axios.post(`http://localhost:5000/api/clients/${client.id}/generate-follow-up`, {
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/clients/${client.id}/generate-follow-up`, {
         meetingNotes: notes
       });
       

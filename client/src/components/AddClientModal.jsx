@@ -38,9 +38,9 @@ export default function AddClientModal({ isOpen, onClose, onClientAdded, editDat
 
     try {
       if (editData) {
-        await axios.put(`http://localhost:5000/api/clients/${editData.id}`, formData);
+        await axios.put(`${import.meta.env.VITE_API_URL}/api/clients/${editData.id}`, formData);
       } else {
-        await axios.post('http://localhost:5000/api/clients', formData);
+        await axios.post(`${import.meta.env.VITE_API_URL}/api/clients`, formData);
       }
 
       setFormData(INITIAL_STATE);
